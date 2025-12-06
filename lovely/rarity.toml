@@ -1,0 +1,44 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+### Rarity API
+
+# get_badge_colour
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/game_object.lua"]'''
+pattern = '''
+get_rarity_badge = function(self, rarity)
+    local vanilla_rarity_keys = {localize('k_common'), localize('k_uncommon'), localize('k_rare'), localize('k_legendary')}
+    if (vanilla_rarity_keys)[rarity] then
+        return vanilla_rarity_keys[rarity] --compat layer in case function gets the int of the rarity
+    else
+        return localize("k_"..rarity:lower())
+    end
+end,
+'''
+position = 'at'
+match_indent = true
+payload = '''
+get_rarity_badge = function(self, rarity, center)
+    return SCP.localize_classification(center, rarity)
+end,
+'''
+
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = "if AUT.card_type == 'Joker' or (AUT.badges and AUT.badges.force_rarity) then card_type = SMODS.Rarity:get_rarity_badge(card.config.center.rarity) end"
+position = "at"
+payload = "if AUT.card_type == 'Joker' or (AUT.badges and AUT.badges.force_rarity) then card_type = SMODS.Rarity:get_rarity_badge(card.config.center.rarity, card.config.center) end"
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "(_c.set == 'Joker' and G.C.RARITY[_c.rarity]) or"
+position = "at"
+payload = "(_c.set == 'Joker' and SCP.get_rarity_colour(_c.rarity, card, _c)) or"
+match_indent = true

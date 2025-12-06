@@ -1,0 +1,14 @@
+{
+	"id": "DataExpunged",
+	"name": "[DATA EXPUNGED]",
+	"display_name": "[DATA EXPUNGED]",
+	"author": ["lord.ruby"],
+	"description": "A SCP themed Balatro mod",
+	"prefix": "scp",
+	"main_file": "main.lua",
+	"priority": 0,
+	"version": "1.0.0",
+	"dependencies": [],
+	"allow_redistribution": true,
+	"no_marquee": true
+}

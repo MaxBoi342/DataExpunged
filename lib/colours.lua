@@ -1,0 +1,1 @@
+G.C.SCP_THAUMIEL = HEX("ff477e")
