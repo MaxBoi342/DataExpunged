@@ -200,7 +200,10 @@ return {
                     " ",
                     " ",
                     " ",
-                    "SCP-{C:black,X:black}XXXX{} is a Balatro Mod themed around The SCP Foundation",
+                    "{s:1.5}Item {E:scp_hash,s:1.5}1{s:1.5}: {}SCP-{C:black,X:black}XXXX{}",
+                    "{s:1.5}Object Class: {}Apollyon",
+                    "{s:1.5}Special Containment Procedures: {}Containment of SCP-{C:black,X:black}XXXX{} is impossible.",
+                    "{s:1.5}Description: {}SCP-{C:black,X:black}XXXX{} is a Balatro Mod themed around The SCP Foundation",
                     "adding Jokers based around many SCPs and various other cards and mechanics",
                     "{C:inactive,s:0.9}For Authors see Credits page"
                 }
