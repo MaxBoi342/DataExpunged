@@ -20,6 +20,9 @@ local tbl= {
             },
             one = {
                 "914"
+            },
+            order = {
+                "proposals"
             }
         }
     }
