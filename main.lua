@@ -17,6 +17,9 @@ local tbl= {
                 "code_name_dr_mann",
                 "code_name_wjs",
                 "code_name_lily",
+            },
+            order = {
+                "proposals"
             }
         }
     }

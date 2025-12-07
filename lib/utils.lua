@@ -14,21 +14,29 @@ function SCP.load_table(table)
     end
 end
 
-function SCP.get_paths(table, name)
+function SCP.get_paths(_table, name)
     local paths = {}
     local root = name or ""
-    for i, v in pairs(table) do
-        if type(v) == "table" then
-            for i2, v2 in pairs(SCP.get_paths(v, root.."/"..i)) do
-                paths[#paths+1] = v2
+    if _table.order then
+        table.sort(_table, function(a, b)
+            return _table.order[a] > _table.order[b]
+        end)
+    end
+    for i, v in pairs(_table) do
+        if i ~= "order" then
+            if type(v) == "table" then
+                for i2, v2 in pairs(SCP.get_paths(v, root.."/"..i)) do
+                    paths[#paths+1] = v2
+                end
+            else
+                if root[1] == "/" then root = string.sub(root, 2) end
+                local sep = "/"
+                if root == "" then sep = "" end
+                paths[#paths+1] = root..sep..v..".lua"
             end
-        else
-            if root[1] == "/" then root = string.sub(root, 2) end
-            local sep = "/"
-            if root == "" then sep = "" end
-            paths[#paths+1] = root..sep..v..".lua"
         end
     end
+    table.sort(paths)
     return paths
 end
 
