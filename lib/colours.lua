@@ -1,1 +1,2 @@
 G.C.SCP_THAUMIEL = HEX("ff477e")
+G.C.RARITY.Junk = HEX("67757f")

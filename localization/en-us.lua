@@ -61,6 +61,63 @@ return {
                     }
                 }
             },
+            j_scp_914 = {
+                name = {
+                    "SCP-914",
+                    "{C:red,s:0.8}The Clockworks"
+                },
+                text = {
+                    {
+                        "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-914",
+                        "{s:0.9}Object Class{s:0.8}: Safe",
+                        "{s:0.9}Special Containment Procedures:",
+                        "{s:0.8}SCP-914 is to be kept in research cell 109-B",
+                        "{s:0.8}with two guard personnel on duty at all times.{}",
+                        "{s:0.9}Description:",
+                    },
+                    {
+                        "{C:attention}Input{} the Joker",
+                        "to the left and {C:attention}output a Joker",
+                        "that's a rarity below, same, or above",
+                        "{C:inactive}(Can't output {C:purple}Legendary{C:inactive} or higher)"
+                    }
+                }
+            },
+            j_scp_914_nodownside = {
+                name = {
+                    "SCP-914",
+                    "{C:red,s:0.8}The Clockworks"
+                },
+                text = {
+                    {
+                        "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-914",
+                        "{s:0.9}Object Class{s:0.8}: Safe",
+                        "{s:0.9}Special Containment Procedures:",
+                        "{s:0.8}SCP-914 is to be kept in research cell 109-B",
+                        "{s:0.8}with two guard personnel on duty at all times.{}",
+                        "{s:0.9}Description:",
+                    },
+                    {
+                        "{C:attention}Input{} the Joker",
+                        "to the left and {C:attention}output a Joker",
+                        "that's a rarity same or above",
+                        "{C:inactive}(Can't output {C:purple}Legendary{C:inactive} or higher)"
+                    }
+                }
+            },
+            j_scp_914_below_common = {
+                -- referencing how the destroy animation burns up the card
+                name = {
+                    "Pile of Ash",
+                },
+                text = {
+                    {
+                    -- hardcoded on purpose
+                        "{C:chips}+0.5{} Chips",
+                        "{C:inactive, s:0.85}Look at what you've done."
+                    }
+                }
+            },
         },
         Spectral = {
             c_familiar_nodownside = {
@@ -138,7 +195,10 @@ return {
             k_scp_archon = "Archon",
             k_scp_thaumiel = "Thaumiel",
             k_scp_apollyon = "Apollyon",
-
+            -- not actually a class, SCP-914 just uses this for a special joker
+            k_scp_junk = "Junk",
+            
+            k_scp_914_processed = "Proccessed",
             k_rescore_ex = "Again!?"
         }
     }

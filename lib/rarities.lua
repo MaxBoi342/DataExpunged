@@ -1,5 +1,5 @@
 --Common - Safe / Ticonderoga
---Uncommon - Euclid / Cerunnos
+--Uncommon - Euclid / Cernunnos
 --Rare - Keter / Archon
 --Epic/Epic Analog - Thaumiel / Apollyon
 

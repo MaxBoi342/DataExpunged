@@ -44,7 +44,7 @@ SCP.rarity_blacklist = {
     Legendary = true,
     cry_exotic = true,
     entr_entropic = true,
-    valk_exquisite = true   
+    valk_exquisite = true
 }
 
 function SCP.localize_classification(center, rarity)
@@ -69,6 +69,9 @@ end
 function SCP.get_rarity_colour(rarity, card, _c)
     if not SCP.rarity_blacklist[rarity] and next(SMODS.find_card("j_scp_code_name_wjs")) then
         return G.C.RARITY.Common
+    end
+    if card.config and card.config.center and card.config.center.key == "j_scp_914_below_common" then
+        return G.C.RARITY.Junk
     end
     return G.C.RARITY[rarity]
 end
