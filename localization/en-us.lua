@@ -6,18 +6,16 @@ return {
                     "CODE NAME: Lily",
                     "{C:red,s:0.8}The World's Gone Beautiful"
                 },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-001",
+                    "{s:0.9}Object Class{s:0.8}: Unnecessary",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}SCP-001 Does not need to be contained.",
+                    "{s:0.9}Description:",
+                },
                 text = {
-                    {
-                        "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-001",
-                        "{s:0.9}Object Class{s:0.8}: Unnecessary",
-                        "{s:0.9}Special Containment Procedures:",
-                        "{s:0.8}SCP-001 Does not need to be contained.",
-                        "{s:0.9}Description:",
-                    },
-                    {
-                        "Removes the {C:attention}negative effects{}",
-                        "of all {C:spectral}Spectral{} cards and other {C:attention}SCPs{}"
-                    }
+                    "Removes the {C:attention}negative effects{}",
+                    "of all {C:spectral}Spectral{} cards and other {C:attention}SCPs{}"
                 }
             },
             j_scp_code_name_wjs = {
@@ -25,19 +23,17 @@ return {
                     "CODE NAME: WJS",
                     "{C:red,s:0.8}Normalcy"
                 },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-001",
+                    "{s:0.9}Object Class{s:0.8}: Non-Anomalous",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}SCP-001 is kept on a dedicated server or library",
+                    "{s:0.8}located in a place of the O5 Council's choosing.",
+                    "{s:0.9}Description:",
+                },
                 text = {
-                    {
-                        "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-001",
-                        "{s:0.9}Object Class{s:0.8}: Non-Anomalous",
-                        "{s:0.9}Special Containment Procedures:",
-                        "{s:0.8}SCP-001 is kept on a dedicated server or library",
-                        "{s:0.8}located in a place of the O5 Council's choosing.",
-                        "{s:0.9}Description:",
-                    },
-                    {
-                        "All {C:attention}Jokers{} are {C:blue}Common{}",
-                        "{C:inactive}(Excludes {C:purple}Legendary{C:inactive} or higher)"
-                    }
+                    "All {C:attention}Jokers{} are {C:blue}Common{}",
+                    "{C:inactive}(Excludes {C:purple}Legendary{C:inactive} or higher)"
                 }
             },
             j_scp_code_name_dr_mann = {
@@ -45,64 +41,68 @@ return {
                     "CODE NAME: Dr. Mann",
                     "{C:red,s:0.8}The Spiral Path"
                 },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-001",
+                    "{s:0.9}Object Class{s:0.8}: Embla",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}SCP-001 is contained on the grounds of",
+                    "{s:0.8}Site 0 in upstate {X:black,C:black,s:0.8}[REDACTED].{}",
+                    "{s:0.9}Description:",
+                },
                 text = {
-                    {
-                        "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-001",
-                        "{s:0.9}Object Class{s:0.8}: Embla",
-                        "{s:0.9}Special Containment Procedures:",
-                        "{s:0.8}SCP-001 is contained on the grounds of",
-                        "{s:0.8}Site 0 in upstate {X:black,C:black,s:0.8}[REDACTED].{}",
-                        "{s:0.9}Description:",
-                    },
-                    {
-                        "{C:attention}Rescore{} all scored cards",
-                        "once for every {C:attention}previous{}",
-                        "card in scored hand"
-                    }
+                    "{C:attention}Rescore{} all scored cards",
+                    "once for every {C:attention}previous{}",
+                    "card in scored hand"
                 }
             },
+            j_scp_342 = {
+				name = {
+					"SCP-342",
+					"{C:red,s:0.8}One-Way Ticket",
+				},
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-342",
+                    "{s:0.9}Object Class{s:0.8}: Euclid",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}SCP-342 can be safely stored in its case",
+                    "{s:0.8}file folder in High Value Items Storage",
+                    "{s:0.9}Description:",
+                },
+				text = {
+					"Always {C:red}Eternal",
+                    "All cards cost {C:attention}zero{}",
+                    "Defeating a Boss Blind increases",
+                    "Ante by additional {C:attention}1{}",
+				},
+                no_downsides_text = {
+                    "Always {C:red}Eternal",
+                    "All cards cost {C:attention}zero{}",
+                }
+			},
             j_scp_914 = {
                 name = {
                     "SCP-914",
                     "{C:red,s:0.8}The Clockworks"
                 },
-                text = {
-                    {
-                        "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-914",
-                        "{s:0.9}Object Class{s:0.8}: Safe",
-                        "{s:0.9}Special Containment Procedures:",
-                        "{s:0.8}SCP-914 is to be kept in research cell 109-B",
-                        "{s:0.8}with two guard personnel on duty at all times.{}",
-                        "{s:0.9}Description:",
-                    },
-                    {
-                        "{C:attention}Input{} the Joker",
-                        "to the left and {C:attention}output a Joker",
-                        "that's a rarity below, same, or above",
-                        "{C:inactive}(Can't output {C:purple}Legendary{C:inactive} or higher)"
-                    }
-                }
-            },
-            j_scp_914_nodownside = {
-                name = {
-                    "SCP-914",
-                    "{C:red,s:0.8}The Clockworks"
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-914",
+                    "{s:0.9}Object Class{s:0.8}: Safe",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}SCP-914 is to be kept in research cell 109-B",
+                    "{s:0.8}with two guard personnel on duty at all times.{}",
+                    "{s:0.9}Description:",
                 },
                 text = {
-                    {
-                        "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-914",
-                        "{s:0.9}Object Class{s:0.8}: Safe",
-                        "{s:0.9}Special Containment Procedures:",
-                        "{s:0.8}SCP-914 is to be kept in research cell 109-B",
-                        "{s:0.8}with two guard personnel on duty at all times.{}",
-                        "{s:0.9}Description:",
-                    },
-                    {
-                        "{C:attention}Input{} the Joker",
-                        "to the left and {C:attention}output a Joker",
-                        "that's a rarity same or above",
-                        "{C:inactive}(Can't output {C:purple}Legendary{C:inactive} or higher)"
-                    }
+                    "{C:attention}Input{} the Joker",
+                    "to the left and {C:attention}output a Joker",
+                    "that's a rarity below, same, or above",
+                    "{C:inactive}(Can't output {C:purple}Legendary{C:inactive} or higher)"
+                },
+                no_downsides_text = {
+                    "{C:attention}Input{} the Joker",
+                    "to the left and {C:attention}output a Joker",
+                    "that's a rarity same or above",
+                    "{C:inactive}(Can't output {C:purple}Legendary{C:inactive} or higher)"
                 }
             },
             j_scp_914_below_common = {
@@ -122,18 +122,16 @@ return {
                 name = {
                     "SCP-000",
                 },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-000",
+                    "{s:0.9}Object Class{s:0.8}: {E:scp_hash,C:mult}1{C:mult}NULL",
+                    "{s:0.9}Special Containment Prodecures{s:0.8}: Field does not exist.",
+                    "{s:0.9}Description{s:0.8}:",
+                },
                 text = {
-                    {
-                        "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-000",
-                        "{s:0.9}Object Class{s:0.8}: {E:scp_hash,C:mult}1{C:mult}NULL",
-                        "{s:0.9}Special Containment Prodecures{s:0.8}: Field does not exist.",
-                        "{s:0.9}Description{s:0.8}:",
-                    },
-                    {
-                        "Internal system error: Field undefined. Please contact system administrator.",
-                        "Internal system error: Field undefined. Please contact system administrator.",
-                        "InteRиαl Sуѕtєм ERяяσя: FïëlÐ ünÐëƒïnëÐ. ρĿєДšє ςόЛţДςţ šΫšţєΜMM-",
-                    },
+                    "Internal system error: Field undefined. Please contact system administrator.",
+                    "Internal system error: Field undefined. Please contact system administrator.",
+                    "InteRиαl Sуѕtєм ERяяσя: FïëlÐ ünÐëƒïnëÐ. ρĿєДšє ςόЛţДςţ šΫšţєΜMM-",
                 }
             },
         },

@@ -41,7 +41,7 @@ function SCP.get_paths(_table, name)
 end
 
 function SCP.downside_active(card)
-    if ((card.ability.set == "Joker" and card.config.center.original_mod.id == SCP.id) or card.ability.set == "Spectral") and next(SMODS.find_card("j_scp_code_name_lily")) then
+    if ((card.ability.set == "Joker" and card.config.center.original_mod and card.config.center.original_mod.id == SCP.id) or card.ability.set == "Spectral") and next(SMODS.find_card("j_scp_code_name_lily")) then
         return false
     end
     return true
@@ -88,4 +88,40 @@ function SCP.merge_tables(tbl1, tbl2)
     for i, v in pairs(tbl2) do
         tbl1[#tbl1+1]=v
     end
+end
+
+function SCP.generate_description_localization(args, loc_target)
+    if not args.card then args.card = G._loc_card end
+    if not loc_target then return end
+    local target = args.card and not SCP.downside_active(args.card) and "no_downsides_text" or "text"
+    if not loc_target[target] then target = "text" end
+    if type(loc_target[target]) == 'table' and loc_target.info then
+        args.AUT.multi_box = args.AUT.multi_box or {} 
+        local boxes = {
+            loc_target.info_parsed,
+            loc_target[target.."_parsed"]
+        }
+        for i, box in ipairs(boxes) do
+            for j, line in ipairs(box) do
+                local final_line = SMODS.localize_box(line, args)
+                if i == 1 or next(args.AUT.info) then
+                    args.nodes[#args.nodes+1] = final_line -- Sends main box to AUT.main
+                    if not next(args.AUT.info) then args.nodes.main_box_flag = true end
+                elseif not next(args.AUT.info) then 
+                    args.AUT.multi_box[i-1] = args.AUT.multi_box[i-1] or {}
+                    args.AUT.multi_box[i-1][#args.AUT.multi_box[i-1]+1] = final_line
+                end
+                if not next(args.AUT.info) then args.AUT.box_colours[i] = args.vars.box_colours and args.vars.box_colours[i] or G.C.UI.BACKGROUND_WHITE end
+            end
+        end
+        return true
+    end
+end
+
+local generate_ui_ref = generate_card_ui
+function generate_card_ui(_c, full_UI_table, specific_vars, card_type, badges, hide_desc, main_start, main_end, card, ...)
+    G._loc_card = card
+    local ret = generate_ui_ref(_c, full_UI_table, specific_vars, card_type, badges, hide_desc, main_start, main_end, card, ...)
+    G._loc_card = nil
+    return ret
 end

@@ -36,7 +36,6 @@ SMODS.Joker({
 
 	loc_vars = function(self, info_queue, card)
 		return {
-			key = not SCP.downside_active(card) and "j_scp_342_no_downside" or nil,
 			vars = { 1 },
 		}
 	end,
