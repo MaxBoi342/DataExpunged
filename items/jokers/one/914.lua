@@ -47,6 +47,11 @@ SMODS.Joker {
                             min = 1
                         end
                         local which_way = pseudorandom("scp_914", min, max)
+                        -- just hardcode d4
+                        if next(SMODS.find_card("j_entr_d4")) then
+                            local reroll = pseudorandom("scp_914", min, max)
+                            which_way = math.max(which_way, reroll)
+                        end
                         local created_card
                         -- hardcode the epic analog case, then the junk "rarity"
                         if joker_to_fucking_kill_oh_my_god.config.center.key == "j_scp_914_below_common" then
