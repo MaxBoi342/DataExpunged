@@ -6,6 +6,7 @@ SMODS.load_file("lib/rarities.lua")()
 
 local tbl= {
     lib = {
+        "atlases",
         "misc",
         "take_ownership",
         "calculation_keys"
