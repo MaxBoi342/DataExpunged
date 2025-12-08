@@ -46,8 +46,14 @@ local function wrapText(text, maxChars)
     return wrappedText
 end
 
+SCP.credits = {
+    {name = "Soulware", works = {"Programmer"}},
+    {name = "SleepyG11", works = {"Programmer"}},
+    {name = "lord.ruby", works = {"Lead Dev", "Programmer", "Art"}}
+}
+
 SCP.extra_tabs = function(page)
-    local _needed_pages = 1
+    local _needed_pages = math.ceil(#SCP.credits/6)
     local mod = SCP
     G.E_MANAGER:add_event(Event({
         blockable = false,
@@ -64,7 +70,9 @@ SCP.extra_tabs = function(page)
     for i = 1, _needed_pages do
         table.insert(opts, localize('k_page')..' '..tostring(i)..'/'..tostring(_needed_pages))
     end
-
+    table.sort(SCP.credits, function(a, b)
+        return a.name:lower() < b.name:lower()
+    end)
     return {
         label = label,
         chosen = SMODS.LAST_SELECTED_MOD_TAB == "DataExpunged_1" or false,
@@ -75,8 +83,21 @@ SCP.extra_tabs = function(page)
 
             -- Mod description
             modNodes[#modNodes + 1] = {}
-            local loc_vars = mod.description_loc_vars and mod:description_loc_vars() or {}
-            localize { type = 'descriptions', key = "DataExpunged_credits_"..(G.SCP_CREDITS_PAGE), set = 'Mod', nodes = modNodes[#modNodes], vars = loc_vars.vars, scale = loc_vars.scale, text_colour = loc_vars.text_colour, shadow = loc_vars.shadow }
+            local _vars = {}
+            for i = 1, 6 do
+                local credit = SCP.credits[i + (G.SCP_CREDITS_PAGE - 1) * 6] or {name = "", works = {}}
+                local works = credit.works[1] or ""
+                if #credit.works > 1 then
+                    for i = 2, #credit.works do works = works ..", "..credit.works[i] end
+                end
+                _vars[#_vars+1] = credit.name or ""
+                _vars[#_vars+1] = credit.name ~= "" and ":" or "" --sinful
+                _vars[#_vars+1] = works or ""
+            end
+            local loc_vars = {
+                vars = _vars
+            }
+            localize { type = 'descriptions', key = "DataExpunged_credits", set = 'Mod', nodes = modNodes[#modNodes], vars = loc_vars.vars, scale = loc_vars.scale, text_colour = loc_vars.text_colour, shadow = loc_vars.shadow }
             modNodes[#modNodes] = desc_from_rows(modNodes[#modNodes])
             modNodes[#modNodes].config.colour = loc_vars.background_colour or modNodes[#modNodes].config.colour
             modNodes[#modNodes].config.minh = 6

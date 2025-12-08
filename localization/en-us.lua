@@ -224,16 +224,23 @@ return {
                     "{C:inactive,s:0.9}For Authors see Credits page"
                 }
             },
-            DataExpunged_credits_1 = {
+            DataExpunged_credits = {
                 name = "Credits",
                 text = {
                     "{C:red}WELCOME TO THE SCP FOUNDATION{}",
                     "{C:red,s:2}CONTRIBUTOR PAGE REPOSITORY{}",
                     " ",
                     " ",
-                    "{C:red,s:1.5}lord.ruby{s:1.5}: {C:red}Lead Dev{}, {C:red}Artist{}, {C:red}Programmer",
-                    "{C:red,s:1.5}SleepyG11{s:1.5}: {C:red}Programmer",
-                    "{C:red,s:1.5}Soulware{s:1.5}: {C:red}Programmer",
+                    " ",
+                    " ",
+                    " ",
+                    " ",
+                    "{C:red,s:1.5}#1#{s:1.5}#2# {C:red}#3#",
+                    "{C:red,s:1.5}#4#{s:1.5}#5# {C:red}#6#",
+                    "{C:red,s:1.5}#7#{s:1.5}#8# {C:red}#9#",
+                    "{C:red,s:1.5}#10#{s:1.5}#11# {C:red}#12#",
+                    "{C:red,s:1.5}#13#{s:1.5}#14# {C:red}#15#",
+                    "{C:red,s:1.5}#16#{s:1.5}#17# {C:red}#18#",
                 }
             },
         }
