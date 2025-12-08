@@ -3,5 +3,5 @@ SMODS.Joker {
     pos = {x = 0, y = 0},
     classification = "null",
     cost = 6, -- dummy price, update later
-    rarity = "scp_scp000rarity",
+    rarity = 1,
 }

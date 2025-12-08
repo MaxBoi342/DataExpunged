@@ -75,6 +75,7 @@ function SCP.localize_classification(center, rarity)
 end
 
 function SCP.get_rarity_colour(rarity, card, _c)
+    if _c.classification == "null" then return G.C.BLACK end
     if not SCP.rarity_blacklist[rarity] and next(SMODS.find_card("j_scp_code_name_wjs")) then
         return G.C.RARITY.Common
     end
