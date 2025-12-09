@@ -4,3 +4,4 @@ SMODS.DynaTextEffect {
         letter.letter = love.graphics.newText(dynatext.font.FONT, "#")
     end
 }
+
