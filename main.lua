@@ -31,7 +31,8 @@ local tbl= {
             },
             order = {
                 proposals = 1,
-                one = 2
+                one = 2,
+                nine = 10
             }
         }
     }
