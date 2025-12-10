@@ -33,7 +33,7 @@ local calc_main_scoring = SMODS.calculate_main_scoring
 function SMODS.calculate_main_scoring(context, scoring_hand)
     local cards, messages = SCP.get_scored_cards(context.scoring_hand)
     G.rescore_messages = messages or {}
-    if context.cardarea ~= G.play or not cards then
+    if context.cardarea ~= G.play or not next(cards) then
 	    calc_main_scoring(context, context.scoring_hand)
     end
 	if context.cardarea == G.play and cards then

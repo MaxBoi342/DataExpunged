@@ -87,15 +87,15 @@ for ind, tbl in pairs(center) do
 end
 '''
 
-
 [[patches]]
 [patches.pattern]
 target = '''functions/common_events.lua'''
 pattern = '''
-if not G.localization.descriptions[set][_c.key] then set = "Other" end
+desc_nodes.name_styled = SMODS.info_queue_desc_from_rows(desc_nodes.name_styled, true)
 '''
 position = 'at'
 match_indent = true
 payload = '''
-if not G.localization.descriptions[set] or not G.localization.descriptions[set][_c.key] then set = "Other" end
+desc_nodes.name_styled = SMODS.info_queue_desc_from_rows(desc_nodes.name_styled, true, nil, key)
 '''
+times = 2

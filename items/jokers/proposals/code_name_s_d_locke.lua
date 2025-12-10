@@ -78,22 +78,30 @@ SMODS.Enhancement {
     eternal_compat = true,
     perishable_compat = true,
 
+    in_pool = function() return false end,
+
     loc_vars = function(self, q, card)
         if card.ability.merged_cards then
+            local keys = {}
             for i, v in pairs(card.ability.merged_cards.seals) do
-                q[#q+1] = G.P_SEALS[v]
+                keys[v] = (keys[v] or 0) + 1
             end
             for i, v in pairs(card.ability.merged_cards.enhancements) do
-                q[#q+1] = G.P_CENTERS[v]
+                keys[v] = (keys[v] or 0) + 1
             end
             for i, v in pairs(card.ability.merged_cards.editions) do
-                q[#q+1] = G.P_CENTERS[v]
+                keys[v] = (keys[v] or 0) + 1
+            end
+            G.infoqueue_modifiers = {}
+            for i, v in pairs(keys) do
+                q[#q+1] = G.P_CENTERS[i]
+                G.infoqueue_modifiers[i] = {stack = v}
             end
         end
         return {
             vars = {
                 card.ability.merged_cards and card.ability.merged_cards.cards or 0
-            }
+            },
         }
     end,
 
@@ -111,44 +119,112 @@ SMODS.Enhancement {
                 repetitions = card.ability.merged_cards.cards + extra_reps
             }
         else
-            for i, v in pairs(card.ability.merged_cards.editions) do
-                local edition = G.P_CENTERS[v] 
-                local ret
-                local dummy_card = SCP.get_dummy(card.config.center, card.area, card)
-                dummy_card.edition = {}
-                for k, v in pairs(edition.config) do
-                    if type(v) == 'table' then
-                        dummy_card.edition[k] = copy_table(v)
+            if context.cardarea == G.hand and context.final_scoring_step then
+                for i, v in pairs(card.ability.merged_cards.enhancements) do
+                    local center = G.P_CENTERS[v]
+                    local dummy = SCP.get_dummy(center, card.area, card)
+                    local ret = eval_card(dummy, context)
+                    ret.playing_card = {}
+                    local h_mult = dummy:get_chip_h_mult()
+                    if h_mult ~= 0 then
+                        ret.mult = h_mult
+                    end
+                
+                    local h_x_mult = dummy:get_chip_h_x_mult()
+                    if h_x_mult > 0 then
+                        ret.x_mult = h_x_mult
+                    end
+                
+                    local h_chips = dummy:get_chip_h_bonus()
+                    if h_chips ~= 0 then
+                        ret._chips = h_chips
+                    end
+                
+                    local h_x_chips = dummy:get_chip_h_x_bonus()
+                    if h_x_chips > 0 then
+                        ret.x_chips = h_x_chips
+                    end
+                    for i, v in pairs(ret or {}) do
+                        SMODS.calculate_individual_effect(ret, card, i, v, false)
+                    end
+                end
+            else
+                for i, v in pairs(card.ability.merged_cards.editions) do
+                    local edition = G.P_CENTERS[v] 
+                    local ret
+                    local dummy_card = SCP.get_dummy(card.config.center, card.area, card)
+                    dummy_card.edition = {}
+                    for k, v in pairs(edition.config) do
+                        if type(v) == 'table' then
+                            dummy_card.edition[k] = copy_table(v)
+                        else
+                            dummy_card.edition[k] = v
+                        end
+                    end
+                    dummy_card.edition[string.sub(v, 3)] = true
+                    dummy_card.edition.key = v
+                    local ret
+                    if (context.cardarea == G.play or context.cardarea == G.rescore_cards) and context.main_scoring then
+                        local mult = dummy:get_chip_mult()
+                        if mult > 0 then
+                            ret.mult = mult
+                        end
+                        local x_mult = dummy:get_chip_x_mult(context)
+                        if x_mult > 0 then
+                            ret.x_mult = x_mult
+                        end
+                        local p_dollars = dummy:get_p_dollars()
+                        if p_dollars > 0 then
+                            ret.p_dollars = p_dollars
+                        end
+                    elseif context.end_of_round and context.cardarea == G.hand and context.playing_card_end_of_round then
+                        ret = card:get_end_of_round_effect(context)
+                        if ret then
+                            ret.end_of_round = ret
+                        end
                     else
-                        dummy_card.edition[k] = v
+                        if edition.calculate and type(edition.calculate) == 'function' then
+                            local o = edition:calculate(dummy_card, context)
+                            if o then
+                                if not o.card then o.card = dummy_card end
+                                ret = o
+                            end
+                        end
+                    end
+                    for i, v in pairs(ret or {}) do
+                        SMODS.calculate_individual_effect(ret, card, i, v, false)
+                    end 
+                end
+                for i, v in pairs(card.ability.merged_cards.seals) do
+                    local ret
+                    if context.end_of_round and context.cardarea == G.hand and context.playing_card_end_of_round then
+                        ret = card:get_end_of_round_effect(context)
+                        if ret then
+                            ret.end_of_round = ret
+                        end
+                    else
+                        ret = SCP.calc_seal_from_key(v, context, card)
+                    end
+                    local ret = SCP.calc_seal_from_key(v, context, card)
+                    for i, v in pairs(ret or {}) do
+                        SMODS.calculate_individual_effect(ret, card, i, v, false)
                     end
                 end
-                dummy_card.edition[string.sub(v, 3)] = true
-                dummy_card.edition.key = v
-                if edition.calculate and type(edition.calculate) == 'function' then
-                    local o = edition:calculate(dummy_card, context)
-                    if o then
-                        if not o.card then o.card = dummy_card end
-                        ret = o
+                for i, v in pairs(card.ability.merged_cards.enhancements) do
+                    local center = G.P_CENTERS[v]
+                    local dummy = SCP.get_dummy(center, card.area, card)
+                    local ret
+                    if context.end_of_round and context.cardarea == G.hand and context.playing_card_end_of_round then
+                        ret = card:get_end_of_round_effect(context)
+                        if ret then
+                            ret.end_of_round = ret
+                        end
+                    else
+                        ret = eval_card(dummy, context)
                     end
-                end
-                for i, v in pairs(ret or {}) do
-                    SMODS.calculate_individual_effect(ret, card, i, v, false)
-                end 
-            end
-            for i, v in pairs(card.ability.merged_cards.seals) do
-                local ret = SCP.calc_seal_from_key(v, context, card)
-                for i, v in pairs(ret or {}) do
-                    SMODS.calculate_individual_effect(ret, card, i, v, false)
-                end
-            end
-            for i, v in pairs(card.ability.merged_cards.enhancements) do
-                local center = G.P_CENTERS[v]
-                if center.set ~= 'Enhanced' then return nil end
-                local dummy = SCP.get_dummy(center, card.area, card)
-                local ret = eval_card(dummy, context)
-                for i, v in pairs(ret or {}) do
-                    SMODS.calculate_individual_effect(ret, card, i, v, false)
+                    for i, v in pairs(ret or {}) do
+                        SMODS.calculate_individual_effect(ret, card, i, v, false)
+                    end
                 end
             end
         end
@@ -190,4 +266,33 @@ function SCP.calc_seal_from_key(key, context, card)
             return nil, true
         end
     end
+end
+
+function SMODS.info_queue_desc_from_rows(desc_nodes, empty, maxw, key)
+    local t = {}
+    for k, v in ipairs(desc_nodes) do
+        if k == 1 then
+            if G.infoqueue_modifiers and G.infoqueue_modifiers[key] then
+                local modif = G.infoqueue_modifiers[key]
+                if modif.stack and modif.stack > 1 then
+                    v[#v+1] = {
+                        n = G.UIT.O,
+                        config = {
+                            object = DynaText({
+                                string = " (X"..number_format(modif.stack)..")",
+                                colours = { G.C.WHITE },
+                                shadow = true,
+                                scale = 0.3,
+                            }),
+                        },
+                    }
+                end
+                G.infoqueue_modifiers[key] = nil
+            end
+        end
+        t[#t+1] = {n=G.UIT.R, config={align = "cm", maxw = maxw}, nodes=v}
+    end
+    return {n=G.UIT.R, config={align = "cm", colour = desc_nodes.background_colour or empty and G.C.CLEAR or G.C.UI.BACKGROUND_WHITE, r = 0.1, emboss = not empty and 0.05 or nil, filler = true, main_box_flag = desc_nodes.main_box_flag and true or nil}, nodes={
+        {n=G.UIT.R, config={align = "cm"}, nodes=t}
+    }}
 end
