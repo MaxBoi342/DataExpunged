@@ -20,6 +20,8 @@ local tbl= {
     "items/jokers/proposals/code_name_wjs",
     "items/jokers/proposals/code_name_lily",
 
+    "items/jokers/one/005",
+    "items/jokers/one/055",
     "items/jokers/one/342",
     "items/jokers/one/914",
 

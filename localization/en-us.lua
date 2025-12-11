@@ -279,6 +279,36 @@ return {
                     ""
                 },
             },
+            j_scp_005 = {
+                name = {
+                    "SCP-005",
+                    "{C:red}The Skeleton Key"
+                },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-005",
+                    "{s:0.9}Object Class{s:0.8}: Safe",
+                    "{s:0.9}Special Containment Procedures{s:0.8}: Object poses no immediate risk.",
+                    "{s:0.9}Description{s:0.8}:",
+                },
+                text = {
+                    "All {C:attention}Booster Packs{} become free."
+                }
+            },
+            j_scp_055 = {
+                name = {
+                    "SCP-055",
+                    "{C:red}[unknown]"
+                },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-055",
+                    "{s:0.9}Object Class{s:0.8}: Keter",
+                    "{s:0.9}Special Containment Procedures{s:0.8}: Object is kept in a 5x5x2.5 [m] cement room.",
+                    "{s:0.9}Description{s:0.8}:",
+                },
+                text = {
+                    "{E:1,C:dark_edition,s:2.5}What does it do again?"
+                }
+            },
         },
         Enhanced = {
             m_scp_dissolved = {
