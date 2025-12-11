@@ -32,22 +32,21 @@ SMODS.Joker {
 local calc_main_scoring = SMODS.calculate_main_scoring
 function SMODS.calculate_main_scoring(context, scoring_hand)
     local cards, messages = SCP.get_scored_cards(context.scoring_hand)
-    G.rescore_messages = messages or {}
-    if context.cardarea ~= G.play or not cards or not next(cards) then
-	    calc_main_scoring(context, context.scoring_hand)
-    end
-	if context.cardarea == G.play and cards then
-        if not G.rescore_cards or #G.rescore_cards.cards == 0 then
+    if context.cardarea == G.play and cards then
+        G.rescore_messages = messages or {}
+	    if not G.rescore_cards or #G.rescore_cards.cards == 0 then
             G.rescore_cards = {cards = cards}
         end
 		context.cardarea = G.rescore_cards
         context.scoring_hand = G.rescore_cards.cards
-		calc_main_scoring(context, G.rescore_cards.cards)
+		local ret = calc_main_scoring(context, G.rescore_cards.cards)
 		context.cardarea = G.play
         G.rescore_cards = nil
-	end
-    G.rescore_messages = {}
-	return
+        G.rescore_messages = {}
+        return ret
+    else
+        return calc_main_scoring(context, scoring_hand)
+    end
 end
 
 function SCP.get_scored_cards(scored_cards)
