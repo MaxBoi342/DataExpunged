@@ -7,48 +7,11 @@
 -- }
 
 function SCP.load_table(table)
-    for i, v in pairs(SCP.get_paths(table)) do
-        local f, err = SMODS.load_file(v)
+    for i, v in pairs(table) do
+        local f, err = SMODS.load_file(v..".lua")
         if err then error(err); return end
         if f then f() end
     end
-end
-
-function SCP.get_paths(_table, name)
-    local paths = {}
-    local root = name or ""
-    if _table.order then
-        local tbl = {}
-        for i, v in pairs(_table) do
-            if i ~= "order" then
-                tbl[#tbl+1] = {key = i, tbl = v}
-            end
-        end
-        table.sort(tbl, function(a, b)
-            return _table.order[a.key] > _table.order[b.key]
-        end)
-        _table = tbl
-    end
-    for i, v in pairs(_table) do
-        if i ~= "order" then
-            if type(v) == "table" and v.key then
-                i = v.key
-                v = v.tbl
-            end
-            if type(v) == "table" then
-                for i2, v2 in pairs(SCP.get_paths(v, root.."/"..i)) do
-                    paths[#paths+1] = v2
-                end
-            else
-                if root[1] == "/" then root = string.sub(root, 2) end
-                local sep = "/"
-                if root == "" then sep = "" end
-                paths[#paths+1] = root..sep..v..".lua"
-            end
-        end
-    end
-    table.sort(paths)
-    return paths
 end
 
 function SCP.downside_active(card)

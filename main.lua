@@ -5,37 +5,23 @@ SMODS.load_file("lib/colours.lua")()
 SMODS.load_file("lib/rarities.lua")()
 
 local tbl= {
-    lib = {
-        "atlases",
-        "misc",
-        "take_ownership",
-        "calculation_keys",
-        "config",
-        "sounds",
-        "frame_dependent",
-    },
-    items = {
-        jokers = {
-            proposals = {
-                "code_name_dr_mann",
-                "code_name_s_d_locke",
-                "code_name_wjs",
-                "code_name_lily",
-            },
-            one = {
-                "000",
-                "342",
-                "914",
-            },
-            nine = {
-                "8465"
-            },
-            order = {
-                proposals = 1,
-                one = 2,
-                nine = 10
-            }
-        }
-    }
+    "lib/atlases",
+    "lib/misc",
+    "lib/take_ownership",
+    "lib/calculation_keys",
+    "lib/config",
+    "lib/sounds",
+    "lib/frame_dependent",
+
+    "items/jokers/proposals/code_name_dr_mann",
+    "items/jokers/proposals/code_name_s_d_locke",
+    "items/jokers/proposals/code_name_wjs",
+    "items/jokers/proposals/code_name_lily",
+
+    "items/jokers/one/000",
+    "items/jokers/one/342",
+    "items/jokers/one/914",
+
+    "items/jokers/nine/8465",
 }
 SCP.load_table(tbl)
