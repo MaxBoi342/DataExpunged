@@ -204,3 +204,16 @@ SCP.get_dummy = function(center, area, self)
     end
     return tbl
 end
+
+function SCP.end_of_round(context)
+    return context.end_of_round and not context.individual and not context.repetition and not context.blueprint
+end
+
+function SCP.area_has_room(area, num)
+    if not num then num = 1 end
+    if area == "joker" or area == "consumeable" then
+        return G.GAME[area.."_buffer"] + #G[area.."s"].cards < G[area.."s"].config.card_limit
+    else
+        return #G[area].cards < G[area].config.card_limit
+    end
+end

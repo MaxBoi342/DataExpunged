@@ -180,6 +180,105 @@ return {
                     "InteRиαl{C:dark_edition}+{} Sуѕtєм {C:dark_edition}1{}ERяяσя: FïëlÐ ünÐëƒïnëÐ.Jok ρĿєДšє ςόЛţДςţ eršΫšţєΜMM-    Slot",
                 }
             },
+
+            j_scp_6747 = {
+                name = {
+                    "SCP-6747",
+                    "{C:red,s:0.8}Chaos Theory"
+                },
+                info = {
+                    "{s:0.9}Item: {s:0.8}SCP-6747-B",
+                    "{s:0.9}Object Class:{s:0.8} Thaumiel",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}SCP-6747 is the terminal goal of",
+                    "{s:0.8}PROJECT X/MACHINA as such virtually unlimited",
+                    "{s:0.8}resources have been made available for its completion",
+                    "{s:0.9}Description:",
+                },
+                text = {
+                    "After 1 round sell",
+                    "this SCP to create",
+                    "{C:attention}SCP-6747-A3{} and {C:attention}SCP-6747-B{}",
+                    "{C:inactive}(#1#)",
+                    "{C:inactive}(Must have room)"
+                },
+                no_downsides_text = {
+                    "Sell this SCP to create",
+                    "{C:attention}SCP-6747-A3{} and {C:attention}SCP-6747-B{}",
+                    "{C:inactive}(Must have room)"
+                }
+            },
+            ["j_scp_6747-A3"] = {
+                name = {
+                    "SCP-6747-A3",
+                    "{C:red,s:0.8}Chaos Theory"
+                },
+                info = {
+                    "{s:0.9}Item: {s:0.8}SCP-6747-B",
+                    "{s:0.9}Object Class:{s:0.8} Thaumiel",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}SCP-6747 is the terminal goal of",
+                    "{s:0.8}PROJECT X/MACHINA as such virtually unlimited",
+                    "{s:0.8}resources have been made available for its completion",
+                    "{s:0.9}Description:",
+                },
+                text = {
+                    "Facilitates the creation",
+                    "of {C:attention}SCP-6747-C{}"
+                },
+            },
+            ["j_scp_6747-B"] = {
+                name = {
+                    "SCP-6747-B",
+                    "{C:red,s:0.8}Chaos Theory"
+                },
+                info = {
+                    "{s:0.9}Item: {s:0.8}SCP-6747-B",
+                    "{s:0.9}Object Class:{s:0.8} Thaumiel",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}SCP-6747 is the terminal goal of",
+                    "{s:0.8}PROJECT X/MACHINA as such virtually unlimited",
+                    "{s:0.8}resources have been made available for its completion",
+                    "{s:0.9}Description:",
+                },
+                text = {
+                    {
+                        "When a blind is selected",
+                        "{C:attention}destroy{} a random Joker",
+                        "and recreate it with {C:attention}Rental",
+                        "or {C:attention}Perishable{}",
+                    },
+                    {
+                        "After {C:attention}#1#{} Jokers sacrificed",
+                        "{C:red}self-destruct{} remove {C:attention}SCP-6747-A3",
+                        "and create {C:attention}SCP-6747-C",
+                        "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)"
+                    }
+                },
+                no_downsides_text = {
+                    "After {C:attention}#1#{} Blinds selected",
+                    "{C:red}self-destruct{} remove {C:attention}SCP-6747-A3",
+                    "and create {C:attention}SCP-6747-C",
+                    "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)"
+                }
+            },
+            ["j_scp_6747-C"] = {
+                name = {
+                    "SCP-6747-C",
+                    "{C:red,s:0.8}Chaos Theory"
+                },
+                info = {
+                    "{s:0.9}Item: {s:0.8}SCP-6747-C",
+                    "{s:0.9}Object Class:{s:0.8} Thaumiel",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}PROJECT X/DIABOLOS is tasked with researching",
+                    "{s:0.8}analyzing and neutralizing SCP-6747-C",
+                    "{s:0.9}Description:",
+                },
+                text = {
+                    ""
+                },
+            },
         },
         Enhanced = {
             m_scp_dissolved = {
@@ -321,7 +420,10 @@ return {
 
             k_credits = "Credits",
             k_contributors_1 = "WELCOME TO THE SCP FOUNDATION",
-            k_contributors_2 = "CONTRIBUTOR PAGE REPOSITORY"
+            k_contributors_2 = "CONTRIBUTOR PAGE REPOSITORY",
+
+            k_inactive = "Inactive",
+            k_active = "Active"
         }
     }
 }

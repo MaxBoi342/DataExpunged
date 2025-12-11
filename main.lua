@@ -13,14 +13,17 @@ local tbl= {
     "lib/sounds",
     "lib/frame_dependent",
 
+    "items/jokers/one/000",
+
     "items/jokers/proposals/code_name_dr_mann",
     "items/jokers/proposals/code_name_s_d_locke",
     "items/jokers/proposals/code_name_wjs",
     "items/jokers/proposals/code_name_lily",
 
-    "items/jokers/one/000",
     "items/jokers/one/342",
     "items/jokers/one/914",
+
+    "items/jokers/seven/6747",
 
     "items/jokers/nine/8465",
 }
