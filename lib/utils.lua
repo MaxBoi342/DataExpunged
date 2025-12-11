@@ -236,7 +236,7 @@ SCP.get_dummy = function(center, area, self)
         return ret
     end
     tbl.get_chip_x_mult = function(s, ...)
-        local ret = SMODS.multiplicative_stacking(s.ability.h_x_mult or 1, (not s.ability.extra_enhancement and s.ability.perma_h_x_mult) or 0)
+        local ret = SMODS.multiplicative_stacking(s.ability.x_mult or 1, (not s.ability.extra_enhancement and s.ability.perma_x_mult) or 0)
         return ret
     end
     return tbl

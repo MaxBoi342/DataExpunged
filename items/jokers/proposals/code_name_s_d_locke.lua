@@ -34,15 +34,34 @@ SMODS.Joker {
                     if key2 == "c_base" or key2 == "m_scp_dissolved" then key2 = nil end
                     c.ability.merged_cards = c.ability.merged_cards or {
                         cards = 1,
-                        seals = {c.seal, c2.seal},
-                        enhancements = {key1, key2},
-                        editions = {c.edition and c.edition.key, c2.edition and c2.edition.key}
+                        seals = {c.seal},
+                        enhancements = {key1},
+                        editions = {c.edition and c.edition.key}
                     }
                     if c2.config.center_key == "m_scp_dissolved" then
                         c.ability.merged_cards.cards = c.ability.merged_cards.cards + c2.ability.merged_cards.cards
-                        SCP.merge_tables(c.ability.merged_cards.seals, c2.ability.merged_cards.seals)
-                        SCP.merge_tables(c.ability.merged_cards.enhancements, c2.ability.merged_cards.enhancements)
-                        SCP.merge_tables(c.ability.merged_cards.editions, c2.ability.merged_cards.editions)
+                        --SCP.merge_tables(c.ability.merged_cards.seals, c2.ability.merged_cards.seals)
+                        --SCP.merge_tables(c.ability.merged_cards.enhancements, c2.ability.merged_cards.enhancements)
+                        --SCP.merge_tables(c.ability.merged_cards.editions, c2.ability.merged_cards.editions)
+                        local alr = {}
+                        for i, v in pairs(c2.ability.merged_cards.seals) do
+                            if not alr[v] then
+                                alr[v] = true
+                                c.ability.merged_cards.seals[#c.ability.merged_cards.seals+1] = v
+                            end
+                        end
+                        for i, v in pairs(c2.ability.merged_cards.enhancements) do
+                            if not alr[v] then
+                                alr[v] = true
+                                c.ability.merged_cards.enhancements[#c.ability.merged_cards.enhancements+1] = v
+                            end
+                        end
+                        for i, v in pairs(c2.ability.merged_cards.editions) do
+                            if not alr[v] then
+                                alr[v] = true
+                                c.ability.merged_cards.editions[#c.ability.merged_cards.editions+1] = v
+                            end
+                        end
                     end
                     c.base.nominal = c.base.nominal + c2.base.nominal
                     if c2.ability.bonus > 0 then
@@ -164,20 +183,7 @@ SMODS.Enhancement {
                     dummy_card.edition[string.sub(v, 3)] = true
                     dummy_card.edition.key = v
                     local ret
-                    if (context.cardarea == G.play or context.cardarea == G.rescore_cards) and context.main_scoring then
-                        local mult = dummy:get_chip_mult()
-                        if mult > 0 then
-                            ret.mult = mult
-                        end
-                        local x_mult = dummy:get_chip_x_mult(context)
-                        if x_mult > 0 then
-                            ret.x_mult = x_mult
-                        end
-                        local p_dollars = dummy:get_p_dollars()
-                        if p_dollars > 0 then
-                            ret.p_dollars = p_dollars
-                        end
-                    elseif context.end_of_round and context.cardarea == G.hand and context.playing_card_end_of_round then
+                    if context.end_of_round and context.cardarea == G.hand and context.playing_card_end_of_round then
                         ret = card:get_end_of_round_effect(context)
                         if ret then
                             ret.end_of_round = ret
@@ -221,6 +227,21 @@ SMODS.Enhancement {
                         end
                     else
                         ret = eval_card(dummy, context)
+                    end
+                    if context.cardarea == G.play and context.main_scoring then
+                        local mult = dummy:get_chip_mult()
+                        ret = ret or {}
+                        if mult > 0 then
+                            ret.mult = mult
+                        end
+                        local x_mult = dummy:get_chip_x_mult(context)
+                        if x_mult > 0 then
+                            ret.x_mult = x_mult
+                        end
+                        local p_dollars = dummy:get_p_dollars()
+                        if p_dollars > 0 then
+                            ret.p_dollars = p_dollars
+                        end
                     end
                     for i, v in pairs(ret or {}) do
                         SMODS.calculate_individual_effect(ret, card, i, v, false)
