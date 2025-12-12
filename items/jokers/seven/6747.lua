@@ -11,6 +11,8 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if SCP.end_of_round(context) and SCP.downside_active(card) and not card.ability.extra.active then
             card.ability.extra.active = true
+            local eval = function() return not card.ability.triggered and not G.RESET_JIGGLES end
+            juice_card_until(card, eval, true)
             return {
                 message = localize("k_active_ex"),
                 colour = G.C.SCP_THAUMIEL
@@ -81,28 +83,35 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.setting_blind then
             local jokers = {}
+            local jokers_pure = {}
             for i, v in pairs(G.jokers.cards) do
                 if v.config.center_key ~= "j_scp_6747-A3" and v.config.center_key ~= "j_scp_6747-B" and v.config.center_key ~= "j_scp_6747-C" and not SMODS.is_eternal(v) then
                     jokers[#jokers+1] = v
+                    if not v.ability.perishable and not v.ability.rental then
+                        jokers_pure[#jokers_pure +1] = v
+                    end
                 end
             end
+            if #jokers_pure > 0 then jokers = jokers_pure end
             if #jokers > 0 or not SCP.downside_active(card) then
                 card.ability.extra.sacrifices = card.ability.extra.sacrifices + 1
             end
             if SCP.downside_active(card) then
                 local joker = pseudorandom_element(jokers, pseudoseed("j_scp_6747-B"))
-                local key = joker.config.center_key
-                joker:start_dissolve()
-                local joker2 = SMODS.add_card{
-                    key = key,
-                    area = G.jokers
-                }
-                --bypass compatibility
-                if pseudorandom("j_scp_6747-B2") < 0.5 then
-                    joker2.ability.perish_tally = 3
-                    joker2.ability.perishable = true
-                else
-                    joker2.ability.rental = true
+                if joker then
+                    local key = joker.config.center_key
+                    joker:start_dissolve()
+                    local joker2 = SMODS.add_card{
+                        key = key,
+                        area = G.jokers
+                    }
+                    --bypass compatibility
+                    if pseudorandom("j_scp_6747-B2") < 0.5 then
+                        joker2.ability.perish_tally = 3
+                        joker2.ability.perishable = true
+                    else
+                        joker2.ability.rental = true
+                    end
                 end
             end
             if card.ability.extra.sacrifices < card.ability.extra.needed_sacrifices then
