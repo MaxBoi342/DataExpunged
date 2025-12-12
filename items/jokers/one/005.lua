@@ -18,57 +18,9 @@ SMODS.Joker {
                 return true
             end
         }))
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                for k, v in pairs(G.I.CARD) do
-                if v.set_cost then v:set_cost() end
-                end
-                return true
-            end
-        }))
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                for k, v in pairs(G.I.CARD) do
-                if v.set_cost then v:set_cost() end
-                end
-                return true
-            end
-        }))
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                for k, v in pairs(G.I.CARD) do
-                if v.set_cost then v:set_cost() end
-                end
-                return true
-            end
-        }))
     end,
     
     remove_from_deck = function(self, card, from_debuff)
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                for k, v in pairs(G.I.CARD) do
-                if v.set_cost then v:set_cost() end
-                end
-                return true
-            end
-        }))
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                for k, v in pairs(G.I.CARD) do
-                if v.set_cost then v:set_cost() end
-                end
-                return true
-            end
-        }))
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                for k, v in pairs(G.I.CARD) do
-                if v.set_cost then v:set_cost() end
-                end
-                return true
-            end
-        }))
         G.E_MANAGER:add_event(Event({
             func = function()
                 for k, v in pairs(G.I.CARD) do
@@ -84,25 +36,25 @@ local card_set_cost_ref = Card.set_cost
 function Card:set_cost()
     card_set_cost_ref(self)
     
-    if next(SMODS.find_card("j_modprefix_astronomercopy")) then
+    if next(SMODS.find_card("j_scp_005")) then
         if (self.ability.set == 'Tarot' or (self.ability.set == 'Booster' and self.config.center.kind == 'Arcana')) then
             self.cost = 0
         end
     end
     
-    if next(SMODS.find_card("j_modprefix_astronomercopy")) then
+    if next(SMODS.find_card("j_scp_005")) then
         if (self.ability.set == 'Planet' or (self.ability.set == 'Booster' and self.config.center.kind == 'Celestial')) then
             self.cost = 0
         end
     end
     
-    if next(SMODS.find_card("j_modprefix_astronomercopy")) then
+    if next(SMODS.find_card("j_scp_005")) then
         if (self.ability.set == 'Spectral' or (self.ability.set == 'Booster' and self.config.center.kind == 'Spectral')) then
             self.cost = 0
         end
     end
     
-    if next(SMODS.find_card("j_modprefix_astronomercopy")) then
+    if next(SMODS.find_card("j_scp_005")) then
         if (self.ability.set == 'Enhanced' or (self.ability.set == 'Booster' and self.config.center.kind == 'Standard')) then
             self.cost = 0
         end
