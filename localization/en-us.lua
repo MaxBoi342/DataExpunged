@@ -314,6 +314,34 @@ return {
                     "{E:1,C:dark_edition}What does it do again?"
                 }
             },
+            j_scp_1546 = {
+                name = {
+                    "SCP-1546",
+                    "{C:red}University Ballcap"
+                },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-055",
+                    "{s:0.9}Object Class{s:0.8}: Keter",
+                    "{s:0.9}Special Containment Procedures{s:0.8}:",
+                    "{s:0.8}SCP-1546 is to be contained in a triple-locked",
+                    "{s:0.8}safe at Site 38, with access to the safe principally",
+                    "{s:0.8}restricted to the head researcher, Dr. {X:black,C:black,s:0.8}AAAAAA{}",
+                    "{s:0.9}Description{s:0.8}:",
+                },
+                text = {
+                    "Give each played {C:attention}Ace",
+                    "{C:attention}2{}, {C:attention}3{}, {C:attention}4{}, and {C:attention}5{}",
+                    "{C:mult}+#1#{} Mult or {C:chips}+#2#{} Chips",
+                    "if they are part of",
+                    "the {C:attention}poker{} hand"
+                },
+                no_downsides_text = {
+                    "Give each played card",
+                    "{C:mult}+#1#{} Mult or {C:chips}+#2#{} Chips",
+                    "if they are part of",
+                    "the {C:attention}poker{} hand"
+                }
+            },
         },
         Enhanced = {
             m_scp_dissolved = {

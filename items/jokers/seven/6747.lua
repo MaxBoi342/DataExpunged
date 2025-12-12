@@ -92,9 +92,11 @@ SMODS.Joker {
                     end
                 end
             end
+            local trig
             if #jokers_pure > 0 then jokers = jokers_pure end
             if #jokers > 0 or not SCP.downside_active(card) then
                 card.ability.extra.sacrifices = card.ability.extra.sacrifices + 1
+                trig = true
             end
             if SCP.downside_active(card) then
                 local joker = pseudorandom_element(jokers, pseudoseed("j_scp_6747-B"))
@@ -114,21 +116,23 @@ SMODS.Joker {
                     end
                 end
             end
-            if card.ability.extra.sacrifices < card.ability.extra.needed_sacrifices then
-                return {
-                    message = number_format(card.ability.extra.sacrifices).."/"..number_format(card.ability.extra.needed_sacrifices),
-                    colour = G.C.SCP_THAUMIEL
-                }
-            else
-                for i, v in pairs(G.jokers.cards) do
-                    if v.config.center.key == "j_scp_6747-A3" or v.config.center.key == "j_scp_6747-B" then
-                        v:start_dissolve()
+            if trig then
+                if card.ability.extra.sacrifices < card.ability.extra.needed_sacrifices then
+                    return {
+                        message = number_format(card.ability.extra.sacrifices).."/"..number_format(card.ability.extra.needed_sacrifices),
+                        colour = G.C.SCP_THAUMIEL
+                    }
+                else
+                    for i, v in pairs(G.jokers.cards) do
+                        if v.config.center.key == "j_scp_6747-A3" or v.config.center.key == "j_scp_6747-B" then
+                            v:start_dissolve()
+                        end
                     end
+                    SMODS.add_card{
+                        key = "j_scp_6747-C",
+                        area = G.jokers
+                    }
                 end
-                SMODS.add_card{
-                    key = "j_scp_6747-C",
-                    area = G.jokers
-                }
             end
         end
     end,
