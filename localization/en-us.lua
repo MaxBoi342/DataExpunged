@@ -321,7 +321,7 @@ return {
                 },
                 info = {
                     "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-055",
-                    "{s:0.9}Object Class{s:0.8}: Keter",
+                    "{s:0.9}Object Class{s:0.8}: Safe",
                     "{s:0.9}Special Containment Procedures{s:0.8}:",
                     "{s:0.8}SCP-1546 is to be contained in a triple-locked",
                     "{s:0.8}safe at Site 38, with access to the safe principally",
