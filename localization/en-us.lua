@@ -342,6 +342,22 @@ return {
                     "the {C:attention}poker{} hand"
                 }
             },
+            j_scp_tendots = {
+                name = {
+                    ""
+                },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: OO/OOOOO/OO/O",
+                    "{s:0.9}Object Class{s:0.8}: Keter",
+                    "{s:0.9}Special Containment Procedures{s:0.8}:",
+                    "{s:0.8}Due to its infohazardous nature; Object is",
+                    "{s:0.8}effectively self-containing.",
+                    "{s:0.9}Description{s:0.8}:",
+                },
+                text = {
+                    ""
+                }
+            },
         },
         Enhanced = {
             m_scp_dissolved = {
