@@ -501,7 +501,11 @@ return {
             k_inactive = "Inactive",
             k_active = "Active",
 
-            k_show_info = "SHOW INFO"
+            k_show_info = "TOGGLE INFO",
+
+            k_scp_accessibility_mode = "Accessibility Mode",
+            k_scp_default_info = "Show SCP info by default",
+            k_scp_info_in_collection = "Show SCP info in collection"
         }
     }
 }

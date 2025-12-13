@@ -50,7 +50,7 @@ SCP.credits = {
     {name = "Soulware", works = {"Programmer"}},
     {name = "SleepyG11", works = {"Programmer"}},
     {name = "FireIce421", works = {"Programmer"}},
-    {name = "lord.ruby", works = {"Lead Dev", "Programmer", "Art"}}
+    {name = "lord.ruby", works = {"Lead Dev", "Programmer", "Art"}},
 }
 
 SCP.extra_tabs = function(page)
@@ -127,3 +127,65 @@ G.FUNCS.SCP_cycle_credits = function(args)
         definition = create_UIBox_mods(e)
     })
 end
+
+
+local scpConfigTab = function()
+    SCP.config = SCP.config or {}
+	_nodes = {
+		{
+			n = G.UIT.R,
+			config = { align = "cm" },
+			nodes = {
+			},
+		},
+	}
+	left_settings = { n = G.UIT.C, config = { align = "tl", padding = 0.05 }, nodes = {} }
+	right_settings = { n = G.UIT.C, config = { align = "tl", padding = 0.05 }, nodes = {} }
+	config = { n = G.UIT.R, config = { align = "tm", padding = 0 }, nodes = { left_settings, right_settings } }
+	_nodes[#_nodes + 1] = config
+	_nodes[#_nodes + 1] = create_toggle({
+		label = localize("k_scp_accessibility_mode"),
+		active_colour = G.C.RED,
+        inactive_colour = G.C.WHITE,
+		ref_table = SCP.config,
+		ref_value = "accessbility_mode",
+        text_colour = G.C.BLACK,
+        outline_colour = G.C.BLACK
+	})
+
+    _nodes[#_nodes + 1] = create_toggle({
+		label = localize("k_scp_default_info"),
+		active_colour = G.C.RED,
+        inactive_colour = G.C.WHITE,
+		ref_table = SCP.config,
+		ref_value = "default_info",
+        text_colour = G.C.BLACK,
+        outline_colour = G.C.BLACK
+	})
+
+    _nodes[#_nodes + 1] = create_toggle({
+		label = localize("k_scp_info_in_collection"),
+		active_colour = G.C.RED,
+        inactive_colour = G.C.WHITE,
+		ref_table = SCP.config,
+		ref_value = "info_in_collection",
+        text_colour = G.C.BLACK,
+        outline_colour = G.C.BLACK
+	})
+
+	return {
+		n = G.UIT.ROOT,
+		config = {
+			emboss = 0.05,
+			minh = 6,
+			r = 0.1,
+			minw = 10,
+			align = "cm",
+			padding = 0.2,
+			colour = G.C.WHITE,
+		},
+		nodes = _nodes,
+	}
+end
+
+SCP.config_tab = scpConfigTab
