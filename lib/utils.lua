@@ -68,9 +68,30 @@ function SCP.merge_tables(tbl1, tbl2)
     end
 end
 
+local card_click_ref = Card.click
+function Card:click(...)
+    if G.SETTINGS.paused then
+        local center = self.config.center
+        if ((center.set == "Joker" and center.original_mod and center.original_mod.id == SCP.id) or (center.has_info)) then
+            self.ability.show_info = not self.ability.show_info
+            G.show_info = G.show_info or {}
+            G.show_info[self.config.center_key] = self.ability.show_info
+            self:juice_up()
+            return
+        end
+    end
+    return card_click_ref(self, ...)
+end
+
 function SCP.generate_description_localization(args, loc_target)
     if not args.card then args.card = G._loc_card end
     if not loc_target then return end
+    if args.card and args.card.ability.show_info == nil and ((SCP.config.default_info and not G.SETTINGS.paused) or (G.SETTINGS.paused and SCP.config.info_in_collection)) then
+        args.card.ability.show_info = true
+    end
+    if args.card and G.show_info and G.show_info[args.card.config.center_key] ~= nil and G.SETTINGS.paused then
+        args.card.ability.show_info = G.show_info[args.card.config.center_key]
+    end
     local target = args.card and not SCP.downside_active(args.card) and "no_downsides_text" or "text"
     if not loc_target[target] then target = "text" end
     if type(loc_target[target]) == 'table' and loc_target.info then
@@ -484,4 +505,64 @@ function SCP.clean_swap(orig_card, new_card_id)
             return true
         end
     }))
+end
+local G_UIDEF_use_and_sell_buttons_ref = G.UIDEF.use_and_sell_buttons
+function G.UIDEF.use_and_sell_buttons(card)
+	local abc = G_UIDEF_use_and_sell_buttons_ref(card)
+    local center = card.config.center
+    if card.area == G.jokers and ((center.set == "Joker" and center.original_mod and center.original_mod.id == SCP.id) or (center.has_info)) then
+        sell = {n=G.UIT.C, config={align = "cr"}, nodes={
+            {n=G.UIT.C, config={ref_table = card, align = "cr",padding = 0.1, r=0.08, minw = 1.25, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, one_press = true, button = 'sell_card', func = 'can_sell_card', handy_insta_action = 'sell'}, nodes={
+              {n=G.UIT.B, config = {w=0.1,h=0.6}},
+              {n=G.UIT.C, config={align = "tm"}, nodes={
+                {n=G.UIT.R, config={align = "cm", maxw = 1.25}, nodes={
+                  {n=G.UIT.T, config={text = localize('b_sell'),colour = G.C.UI.TEXT_LIGHT, scale = 0.4, shadow = true}}
+                }},
+                {n=G.UIT.R, config={align = "cm"}, nodes={
+                  {n=G.UIT.T, config={text = localize('$'),colour = G.C.WHITE, scale = 0.4, shadow = true}},
+                  {n=G.UIT.T, config={ref_table = card, ref_value = 'sell_cost_label',colour = G.C.WHITE, scale = 0.55, shadow = true}}
+                }}
+              }}
+            }},
+        }}
+        info = {n=G.UIT.C, config={align = "cr"}, nodes={
+            {n=G.UIT.C, config={ref_table = card, align = "cm",padding = 0.1, r=0.08, minw = 1.25, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, button = 'show_info', func = 'can_show_info'}, nodes={
+              {n=G.UIT.B, config = {w=0.1,h=0.3}},
+              {n=G.UIT.C, config={align = "tm"}, nodes={
+                {n=G.UIT.R, config={align = "cm", maxw = 1.25}, nodes={
+                  {n=G.UIT.T, config={text = localize("k_show_info"),colour = G.C.UI.TEXT_LIGHT, scale = 0.4, shadow = true}}
+                }},
+              }}
+            }},
+        }}
+        return {
+            n=G.UIT.ROOT, config = {padding = 0, colour = G.C.CLEAR}, nodes={
+              {n=G.UIT.C, config={padding = 0, align = 'cl'}, nodes={
+                {n=G.UIT.R, config={align = 'cl'}, nodes={
+                  sell
+                }},
+                {n=G.UIT.R, config={align = 'cl'}, nodes={
+                  info
+                }},
+            }},
+        }}
+    end
+    return abc
+end
+
+G.FUNCS.can_show_info = function(e)
+    local center = e.config.ref_table.config.center
+    if
+        not G.CONTROLLER.locked
+    then
+        e.config.colour = G.C.SCP_THAUMIEL
+        e.config.button = "show_info"
+    else
+        e.config.colour = G.C.UI.BACKGROUND_INACTIVE
+        e.config.button = nil
+    end
+end
+G.FUNCS.show_info = function(e)
+    e.config.ref_table.ability.show_info = not e.config.ref_table.ability.show_info
+    e.config.ref_table:juice_up()
 end

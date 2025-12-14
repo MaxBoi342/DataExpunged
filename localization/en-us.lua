@@ -175,9 +175,12 @@ return {
                     "{s:0.9}Description{s:0.8}:",
                 },
                 text = {
-                    "Internal system error: Field undefined. Please contact system administrator.",
-                    "Internal system error: Field undefined. Please contact system administrator.",
-                    "InteRиαl{C:dark_edition}+{} Sуѕtєм {C:dark_edition}1{}ERяяσя: FïëlÐ ünÐëƒïnëÐ.Jok ρĿєДšє ςόЛţДςţ eršΫšţєΜMM-    Slot",
+                    "Internal system error: Field undefined.",
+                    "Please contact system administrator.",
+                    "Internal system error: Field undefined.",
+                    "Please contact system administrator.", 
+                    "InteRиαl{C:dark_edition}+{} Sуѕtєм {C:dark_edition}1{}",
+                    "ERяяσя: FïëlÐ ünÐëƒïnëÐ.Jok ρĿєДšє ςόЛţДςţ eršΫšţєΜMM-    Slot"
                 }
             },
 
@@ -287,7 +290,8 @@ return {
                 info = {
                     "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-005",
                     "{s:0.9}Object Class{s:0.8}: Safe",
-                    "{s:0.9}Special Containment Procedures{s:0.8}: Object poses no immediate risk.",
+                    "{s:0.9}Special Containment Procedures{s:0.8}:",
+                    "{s:0.8}Object poses no immediate risk.",
                     "{s:0.9}Description{s:0.8}:",
                 },
                 text = {
@@ -302,11 +306,67 @@ return {
                 info = {
                     "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-055",
                     "{s:0.9}Object Class{s:0.8}: Keter",
-                    "{s:0.9}Special Containment Procedures{s:0.8}: Object is kept in a 5x5x2.5 [m] cement room.",
+                    "{s:0.9}Special Containment Procedures{s:0.8}:",
+                    "{s:0.8}Object is kept in a 5x5x2.5 [m] cement room.",
                     "{s:0.9}Description{s:0.8}:",
                 },
                 text = {
-                    "{E:1,C:dark_edition,s:2.5}What does it do again?"
+                    "{E:1,C:dark_edition}What does it do again?"
+                }
+            },
+            j_scp_1546 = {
+                name = {
+                    "SCP-1546",
+                    "{C:red}University Ballcap"
+                },
+                info = {
+                    "{s:0.9}Item {E:scp_hash}1{s:0.8}: SCP-055",
+                    "{s:0.9}Object Class{s:0.8}: Safe",
+                    "{s:0.9}Special Containment Procedures{s:0.8}:",
+                    "{s:0.8}SCP-1546 is to be contained in a",
+                    "{s:0.8}triple-locked safe at Site 38,",
+                    "{s:0.8}with access to the safe principally",
+                    "{s:0.8}restricted to the head researcher, Dr. {X:black,C:black,s:0.8}AAAAAA{}",
+                    "{s:0.9}Description{s:0.8}:",
+                },
+                text = {
+                    "Give each played {C:attention}Ace",
+                    "{C:attention}2{}, {C:attention}3{}, {C:attention}4{}, and {C:attention}5{}",
+                    "{C:mult}+#1#{} Mult or {C:chips}+#2#{} Chips",
+                    "if they are part of",
+                    "the {C:attention}poker{} hand"
+                },
+                no_downsides_text = {
+                    "Give each played card",
+                    "{C:mult}+#1#{} Mult or {C:chips}+#2#{} Chips",
+                    "if they are part of",
+                    "the {C:attention}poker{} hand"
+                }
+            },
+            j_scp_2521 = {
+                name = {
+                    --horrible trial and error but basically only 2521 will use this
+                    "{f:scp_2521} O OI O O O O OI O OI O"
+                },
+                info = {
+                    "{IMG:scp_2521_info,s:2}a{}"
+                },
+                text = {
+                    "{IMG:scp_2521_desc}a{}"
+                }
+            },
+            j_scp_2521_accessibility = {
+                name = {
+                    --horrible trial and error but basically only 2521 will use this
+                    "{f:scp_2521} O OI O O O O OI O OI O"
+                },
+                info = {
+                    "{IMG:scp_2521_info,s:2}a{}"
+                },
+                text = {
+                    "Create {C:attention}#1#{} Tendril cards",
+                    "and add them to hand",
+                    "when blind is {C:attention}selected{}"
                 }
             },
             j_scp_7176 = {
@@ -368,6 +428,20 @@ return {
                 text = {
                     "Retrigger this card",
                     "{C:attention}#1#{} times"
+                }
+            },
+            m_scp_tendril = {
+                name = "OOIOOOOOIOOIO",
+                text = {
+                    "{IMG:scp_2521_desc}a{}"
+                }
+            },
+            m_scp_tendril_accessibility = {
+                name = "OOIOOOOOIOOIO",
+                text = {
+                    "Destroys {C:attention}adjacent{} cards",
+                    "when triggered",
+                    "{C:red}Self-destructs{} at end of round"
                 }
             }
         },
@@ -508,7 +582,12 @@ return {
             k_active = "Active",
 
             ph_scp_7176 = "All is quiet.",
-            ph_scp_7176_alt = "Odourless. Numb. Detached."
+            ph_scp_7176_alt = "Odourless. Numb. Detached.",
+            k_show_info = "TOGGLE INFO",
+
+            k_scp_accessibility_mode = "Accessibility Mode",
+            k_scp_default_info = "Show SCP info by default",
+            k_scp_info_in_collection = "Show SCP info in collection"
         }
     }
 }

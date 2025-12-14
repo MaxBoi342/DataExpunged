@@ -1,0 +1,28 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = -1
+
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''
+{n=G.UIT.T, config={text = args.label, scale = args.label_scale, colour = G.C.UI.TEXT_LIGHT}},
+'''
+position = "at"
+payload = '''
+{n=G.UIT.T, config={text = args.label, scale = args.label_scale, colour = args.text_colour or G.C.UI.TEXT_LIGHT}},
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''
+{n=G.UIT.C, config={align = "cm", r = 0.1, padding = 0.03, minw = 0.4*args.scale, minh = 0.4*args.scale, outline_colour = G.C.WHITE, outline = 1.2*args.scale, line_emboss = 0.5*args.scale, ref_table = args,
+'''
+position = "at"
+payload = '''
+{n=G.UIT.C, config={align = "cm", r = 0.1, padding = 0.03, minw = 0.4*args.scale, minh = 0.4*args.scale, outline_colour = args.outline_colour or G.C.WHITE, outline = 1.2*args.scale, line_emboss = 0.5*args.scale, ref_table = args,
+'''
+match_indent = true

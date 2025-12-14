@@ -27,6 +27,10 @@ local tbl= {
     "items/jokers/one/342",
     "items/jokers/one/914",
 
+    "items/jokers/two/1546",
+
+    "items/jokers/three/2521",
+
     "items/jokers/seven/6747",
 
     "items/jokers/eight/7176",
@@ -34,3 +38,10 @@ local tbl= {
     "items/jokers/nine/8465",
 }
 SCP.load_table(tbl)
+
+SCP.optional_features = {
+    cardareas = {
+		deck = true,
+		discard = true,
+	},
+}
