@@ -95,14 +95,16 @@ function SCP.generate_description_localization(args, loc_target)
     local target = args.card and not SCP.downside_active(args.card) and "no_downsides_text" or "text"
     if not loc_target[target] then target = "text" end
     if type(loc_target[target]) == 'table' and loc_target.info then
-        args.AUT.multi_box = args.AUT.multi_box or {}
+        args.AUT.multi_box = args.AUT.multi_box or {} 
         local boxes = {}
-        if type(loc_target.info[1]) == "table" then
-            for i, v in pairs(loc_target.info_parsed) do
-                boxes[#boxes + 1] = v
+        if (args.card and args.card.ability.show_info) then  
+            if type(loc_target.info[1]) == "table" then
+                for i, v in pairs(loc_target.info_parsed) do
+                    boxes[#boxes+1] = v
+                end
+            else
+                boxes[#boxes+1] = loc_target.info_parsed
             end
-        else
-            boxes[#boxes + 1] = loc_target.info_parsed
         end
         if type(loc_target[target][1]) == "table" then
             for i, v in pairs(loc_target[target .. "_parsed"]) do

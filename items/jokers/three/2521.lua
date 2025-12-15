@@ -3,9 +3,9 @@ SMODS.Joker {
     key = "2521",
     pos = {x = 3, y = 0},
     atlas = "customjokers",
-    config = { extra = { cards = 3 } },
+    config = { extra = { cards = 2 } },
     classification = "keter",
-    cost = 6, -- dummy price, update later
+    cost = 8,
     rarity = 3,
     calculate = function(self, card, context)
         if context.first_hand_drawn then

@@ -1,6 +1,7 @@
 SMODS.Joker {
     key = "1546",
-    pos = {x = 0, y = 0},
+    pos = {x = 4, y = 0},
+    atlas = "customjokers",
     config = { extra = { joker_slots = 1 } },
     classification = "safe",
     cost = 6,

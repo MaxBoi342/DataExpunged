@@ -1,7 +1,8 @@
 SMODS.Joker {
     key = "code_name_s_d_locke",
     pos = {x = 0, y = 0},
-    --atlas = "jokers",
+    soul_pos = {x = 0, y = 1},
+    atlas = "proposals",
 
     blueprint_compat = false,
     eternal_compat = true,
@@ -92,7 +93,6 @@ SMODS.Joker {
 SMODS.Enhancement {
     key = "dissolved",
     pos = {x = 0, y = 0},
-    --atlas = "jokers",
     blueprint_compat = false,
     eternal_compat = true,
     perishable_compat = true,
