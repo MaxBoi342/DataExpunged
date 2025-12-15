@@ -279,7 +279,10 @@ return {
                     "{s:0.9}Description:",
                 },
                 text = {
-                    ""
+                    "Used {C:attention}Consumables{} are",
+                    "copied once per ante",
+                    "{C:inactive}(Must have room)",
+                    "{C:inactive}(Hidden consumables excluded)"
                 },
             },
             j_scp_005 = {

@@ -159,7 +159,28 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = false,
     calculate = function(self, card, context)
-        
+        if context.using_consumeable and not context.consumeable.config.center.hidden then
+            if not G.GAME.scp_ante_consumables then G.GAME.scp_ante_consumables = {} end
+            if not G.GAME.scp_ante_consumables[context.consumeable.config.center_key] then
+                if SCP.area_has_room("consumeable") then
+                    G.consumeables:emplace(copy)
+                    G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+                     G.E_MANAGER:add_event(Event{
+                        func = function()
+                            local cons = context.consumeable
+                            local copy = copy_card(cons)
+                            copy:add_to_deck()
+                            G.GAME.scp_ante_consumables[context.consumeable.config.center_key] = true
+                            G.GAME.consumeable_buffer = 0
+                            return true
+                        end
+                    })
+                end
+            end
+        end
+        if context.ante_end then
+            G.GAME.scp_ante_consumables = {}
+        end
     end,
     no_collection = true,
     in_pool = function() return false end

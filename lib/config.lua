@@ -53,6 +53,7 @@ SCP.credits = {
     {name = "lord.ruby", works = {"Lead Dev", "Programmer", "Art"}},
     {name = "FirstTry", works = {"Art"}},
     {name = "mailingway", works = {"Art"}},
+    {name = "LunaAstra", works = {"Art"}},
 }
 
 SCP.extra_tabs = function(page)
