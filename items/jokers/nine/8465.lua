@@ -13,7 +13,7 @@ SMODS.Joker {
         extra = {
             roll = false,
             numerator = 1,
-            denominator = 2
+            denominator = 3
         }
     },
 
