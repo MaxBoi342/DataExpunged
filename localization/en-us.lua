@@ -426,25 +426,27 @@ return {
             },
             j_scp_6219 = {
                 name = {
-                    "{C:black}Abnormality-6219",
+                    "{C:inactive}Abnormality-6219",
                 },
                 info = {
-                    "{s:0.9}Item: {E:scp_hash}1{s:0.8}: Abnormality-6219",
+                    "{s:0.9}Item: {E:scp_hash}1{s:0.8}: {C:inactive,s:0.8}Abnormality-6219",
                     "{s:0.9}Object Class:{s:0.8} Pending",
                     "{s:0.9}Special Containment Procedures:",
-                    "{s:0.8}Abnormality-6219 is contained within a windowless 5x5x5 meter",
+                    "{C:inactive,s:0.8}Abnormality-6219{s:0.8} is contained within a windowless 5x5x5 meter",
                     "{s:0.8}containment chamber with a reinforced locking mechanism.",
                     "{s:0.9}Description:",
                 },
                 text = {
-                    "{C:attention}Use{} Joker to gain {C:blue}+50{} Chips, {C:red}+5 {}Mult or {X:mult,C:white}X1{} XMult",
+                    "{C:attention}Use{} {C:inactive}Abnormality-6219{} to gain",
+                    "{C:blue}+50{} Chips, {C:red}+5 {}Mult or {X:mult,C:white}X1{} XMult",
                     "{C:green}#1# in #2#{} chance to",
                     "reset and {C:red}destroy{} a random joker instead",
                     "Resets self when scored",
                     "{C:inactive}(Currently {C:blue}+#3#{}{C:inactive}, {C:red}+#4#{}{C:inactive}, {X:mult,C:white}X#5#{}{C:inactive})",
                 },
                 no_downsides_text = {
-                    "{C:attention}Use{} Joker to gain {C:blue}+50{} Chips, {C:red}+5 {}Mult or {X:mult,C:white}X1{} XMult",
+                    "{C:attention}Use{} {C:inactive}Abnormality-6219{} to gain",
+                    "{C:blue}+50{} Chips, {C:red}+5 {}Mult or {X:mult,C:white}X1{} XMult",
                     "{C:green}#1# in #2#{} chance to",
                     "reset instead",
                     "Resets self when scored",
