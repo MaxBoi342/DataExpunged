@@ -1,6 +1,6 @@
 SMODS.Joker {
     key = "6219",
-    pos = {x = 6, y = 1},
+    pos = {x = 4, y = 1},
     atlas = "customjokers",
     config = { extra = {
         mult = 0,
