@@ -453,6 +453,26 @@ return {
                     "{C:inactive}(Currently {C:blue}+#3#{}{C:inactive}, {C:red}+#4#{}{C:inactive}, {X:mult,C:white}X#5#{}{C:inactive})",
                 }
             },
+            j_scp_9020 = {
+                name = {
+                    "SCP-9020",
+                    "{C:scp_thaumiel}Apotheosis"
+                },
+                info = {
+                    "{s:0.9}Item: {E:scp_hash}1{s:0.8}: SCP-9020",
+                    "{s:0.9}Object Class:{s:0.8} Thaumiel",
+                    "{s:0.9}Special Containment Procedures:",
+                    "{s:0.8}No physical, digital or written records detailing",
+                    "{s:0.8}the method of achieving SCP-9020",
+                    "are to be kept under any circumstances.",
+                    "{s:0.9}Description:",
+                },
+                text = {
+                    "Has a chance to upgrade a {C:attention}Joker{}",
+                    "to a higher {C:green}rarity{} when spawned in the shop",
+                    "The chance increases for each round beaten"
+                },
+            },
         },
         Enhanced = {
             m_scp_dissolved = {

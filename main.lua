@@ -37,6 +37,8 @@ local tbl= {
     "items/jokers/eight/7176",
 
     "items/jokers/nine/8465",
+
+    "items/jokers/ten/9020",
 }
 SCP.load_table(tbl)
 
