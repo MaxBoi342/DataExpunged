@@ -13,7 +13,7 @@ SMODS.Joker {
         if context.modify_shop_card then
             if string.sub(context.card.config.center.key, 1, 1) == "j" then
                 if pseudorandom('apotheosis', 0, 100) <= card.ability.extra.upgrade_chance then
-                    local _rarity = (context.card.config.center.rarity + 1) <= #SMODS.ObjectTypes['Joker'].rarities and context.card.config.center.rarity + 1 or context.card.config.center.rarity
+                    local _rarity = (context.card.config.center.rarity + 1) < #SMODS.ObjectTypes['Joker'].rarities and context.card.config.center.rarity + 1 or context.card.config.center.rarity
                     local _pool, _pool_key = get_current_pool('Joker', SMODS.ObjectTypes['Joker'].rarities[_rarity].key, nil, 'apotheosis')
                     local _key = pseudorandom_element(_pool, 'upgrade')
                     local _card = SCP.clean_swap(context.card, _key or 'j_joker')
