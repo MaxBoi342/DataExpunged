@@ -378,7 +378,8 @@ end
 --- Transform a given `orig_card` into an instance of `new_card_id` with some extra flair
 ---@param orig_card Card|table
 ---@param new_card_id string
-function SCP.containment_breach(orig_card, new_card_id)
+---@param to_shop boolean
+function SCP.containment_breach(orig_card, new_card_id, to_shop)
     orig_card.scp_breach_started = true
     for i = 0, 1, 0.01 do
         G.E_MANAGER:add_event(Event({
@@ -440,7 +441,7 @@ function SCP.containment_breach(orig_card, new_card_id)
             _card = SMODS.create_card({ key = new_card_id, skip_materialize = true, area = orig_card.area, no_edition = true })
 
             _card.scp_breach_started = true
-            _card:add_to_deck()
+            if not to_shop then _card:add_to_deck() end
             area:emplace(_card, place)
             _card.dissolve = 1
 
