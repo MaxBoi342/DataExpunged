@@ -456,7 +456,7 @@ return {
             j_scp_9020 = {
                 name = {
                     "SCP-9020",
-                    "{C:scp_thaumiel}Apotheosis"
+                    "{C:scp_thaumiel,s:0.8}Apotheosis"
                 },
                 info = {
                     "{s:0.9}Item: {E:scp_hash}1{s:0.8}: SCP-9020",
@@ -464,7 +464,7 @@ return {
                     "{s:0.9}Special Containment Procedures:",
                     "{s:0.8}No physical, digital or written records detailing",
                     "{s:0.8}the method of achieving SCP-9020",
-                    "are to be kept under any circumstances.",
+                    "{s:0.8}are to be kept under any circumstances.",
                     "{s:0.9}Description:",
                 },
                 text = {

@@ -1,14 +1,14 @@
 SMODS.Joker {
     key = "9020",
-    pos = {x = 0, y = 0},
+    pos = {x = 5, y = 1},
     atlas = "customjokers",
-    config = { extra = {upgrade_chance = 5}},
+    config = { extra = {upgrade_chance = 5, upgrade_inc = 5}},
     classification = "thaumiel",
     cost = 10,
-    rarity = 4,
+    rarity = SCP.thaumiel_rarity,
     calculate = function(self, card, context)
         if context.end_of_round and context.main_eval then
-            card.ability.extra.upgrade_chance = card.ability.extra.upgrade_chance + 5
+            card.ability.extra.upgrade_chance = card.ability.extra.upgrade_chance + card.ability.extra.upgrade_inc
         end
         if context.modify_shop_card then
             if string.sub(context.card.config.center.key, 1, 1) == "j" then

@@ -464,7 +464,8 @@ end
 --- Transform a given `orig_card` into an instance of `new_card_id` with no flair
 ---@param orig_card Card|table
 ---@param new_card_id string
-function SCP.clean_swap(orig_card, new_card_id)
+---@param to_shop boolean
+function SCP.clean_swap(orig_card, new_card_id, to_shop)
     local _card = SMODS.create_card({ key = new_card_id, skip_materialize = true, area = orig_card.area, no_edition = true })
     _card.dissolve = 1
     _card.T.x = orig_card.T.x
@@ -493,10 +494,9 @@ function SCP.clean_swap(orig_card, new_card_id)
             end
 
             orig_card:start_dissolve(nil, true, 0, true)
-            --_card = SMODS.create_card({ key = new_card_id, skip_materialize = true, area = orig_card.area, no_edition = true })
 
             _card.scp_breach_started = true
-            _card:add_to_deck()
+            if not to_shop then _card:add_to_deck() end
             area:emplace(_card, place)
 
             _card:SCP_fake_dissolve(nil, nil, 3, nil, true)
