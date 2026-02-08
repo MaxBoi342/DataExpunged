@@ -1,0 +1,17 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = -1
+
+# modify_booster_card context --remove when this gets added to SMODS
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+match_indent = true
+position = 'before'
+pattern = '''
+card.T.x = self.T.x
+'''
+payload = '''
+SMODS.calculate_context({SCP_modify_booster_card = true, card = self, booster = booster_obj, card_to_create = card, index = i})
+'''

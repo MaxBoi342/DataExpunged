@@ -470,6 +470,7 @@ return {
                 text = {
                     "Has a chance to upgrade a {C:attention}Joker{}",
                     "to a higher {C:green}rarity{} when spawned in the shop",
+                    "or a booster pack",
                     "The chance increases for each round beaten"
                 },
             },
