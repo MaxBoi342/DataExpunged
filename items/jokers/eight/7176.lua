@@ -67,6 +67,7 @@ SMODS.Joker {
                         G.hand_text_area.game_chips:juice_up()
                         play_sound('tarot1')
                         SCP.clean_swap(card, "j_scp_7176")
+                        card.ability.eternal = false
                         return true
                     end
                 }))

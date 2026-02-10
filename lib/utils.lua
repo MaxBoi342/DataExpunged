@@ -414,7 +414,6 @@ function SCP.containment_breach(orig_card, new_card_id)
                 end
             }))
         end
-
         G.E_MANAGER:add_event(Event({
             trigger = "after",
             delay = 3,
@@ -424,37 +423,18 @@ function SCP.containment_breach(orig_card, new_card_id)
             end
         }))
     end
-    local _card
     G.E_MANAGER:add_event(Event({
-        blocking = true,
         func = function()
-            local area = orig_card.area or G.jokers
-            local place = 0
-
-            for k, v in ipairs(area.cards) do
-                if v == orig_card then
-                    place = k
-                end
-            end
-
-            orig_card:start_dissolve(nil, true, 0, true)
-            _card = SMODS.create_card({ key = new_card_id, skip_materialize = true, area = orig_card.area, no_edition = true })
-
-            _card.scp_breach_started = true
-            _card:add_to_deck()
-            area:emplace(_card, place)
-            _card.dissolve = 1
-
-            _card:SCP_fake_dissolve(nil, nil, 3, nil, true)
-
+            orig_card:set_ability(G.P_CENTERS[new_card_id])
+            orig_card:SCP_fake_dissolve(nil, nil, 3, nil, true)
             return true
         end
     }))
     G.E_MANAGER:add_event(Event({
         trigger = 'after',
-        delay = 1.5,
+        delay = 5,
         func = function()
-            _card.scp_breach_started = false
+            orig_card.scp_breach_started = false
             return true
         end
     }))
@@ -464,49 +444,34 @@ end
 ---@param orig_card Card|table
 ---@param new_card_id string
 function SCP.clean_swap(orig_card, new_card_id)
-    local _card
     orig_card.scp_breach_started = true
     G.E_MANAGER:add_event(Event({
-        blocking = true;
+        blocking = false;
         func = function()
             orig_card:SCP_fake_dissolve(nil, nil, 3)
             return true
         end
     }))
     G.E_MANAGER:add_event(Event({
-        blocking = true,
+        trigger = 'after',
+        blocking = false;
+        delay = 2.25,
         func = function()
-            orig_card.scp_breach_started = true
-            local area = orig_card.area or G.jokers
-            local place = 0
-
-            for k, v in ipairs(area.cards) do
-                if v == orig_card then
-                    place = k
-                end
-            end
-
-            orig_card:start_dissolve(nil, true, 0, true)
-            _card = SMODS.create_card({ key = new_card_id, skip_materialize = true, area = orig_card.area, no_edition = true })
-
-            _card.scp_breach_started = true
-            _card:add_to_deck()
-            area:emplace(_card, place)
-            _card.dissolve = 1
-
-            _card:SCP_fake_dissolve(nil, nil, 3, nil, true)
-
+            orig_card:set_ability(G.P_CENTERS[new_card_id])
+            orig_card:SCP_fake_dissolve(nil, nil, 3, nil, true)
             return true
         end
     }))
     G.E_MANAGER:add_event(Event({
         trigger = 'after',
-        delay = 1.5,
+        blocking = false;
+        delay = 5,
         func = function()
-            _card.scp_breach_started = false
+            orig_card.scp_breach_started = false
             return true
         end
     }))
+    --return _card
 end
 local G_UIDEF_use_and_sell_buttons_ref = G.UIDEF.use_and_sell_buttons
 function G.UIDEF.use_and_sell_buttons(card)
